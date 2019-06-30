@@ -1,7 +1,6 @@
 package com.job.nfe_repeater.tools;
 
-import com.job.nfe_repeater.arquivei.domain.response.Data;
-import com.job.nfe_repeater.arquivei.domain.response.NfeReceivedResponse;
+import com.job.nfe_repeater.arquivei.domain.response.NfeData;
 import com.job.nfe_repeater.arquivei.rest.NfeReceivedConsumer;
 import com.job.nfe_repeater.nfe.Nfe;
 import com.job.nfe_repeater.nfe.NfeRepository;
@@ -9,7 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 @Component
 public class DatabaseMigration {
@@ -23,27 +23,13 @@ public class DatabaseMigration {
 
     public void migrateNfe() {
         LOGGER.info("Migrating Database");
-        NfeReceivedResponse response = consumer.getNfe();
-        processResponse(response);
+        List<NfeData> nfeList = consumer.getNfeList();
+        persistNfe(nfeList);
         LOGGER.info("Database migration complete");
     }
 
-    private void migrateNfe(String url) {
-        NfeReceivedResponse response = consumer.getNfe(url);
-        processResponse(response);
-    }
-
-    private void processResponse(NfeReceivedResponse response) {
-        if (null != response.getData() && response.getData().length > 0) {
-            persistNfe(response.getData());
-            if (null != response.getStatus() && !StringUtils.isEmpty(response.getPage().getNext())) {
-                migrateNfe(response.getPage().getNext());
-            }
-        }
-    }
-
-    private void persistNfe(Data[] nfeArray) {
-        for (Data nfe : nfeArray) {
+    private void persistNfe(List<NfeData> nfeArray) {
+        for (NfeData nfe : nfeArray) {
             Nfe entry = new Nfe(nfe.getAccessKey(), nfe.getXml());
             repository.save(entry);
         }

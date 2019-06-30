@@ -1,6 +1,6 @@
 package com.job.nfe_repeater.arquivei.domain.response;
 
-public class Page {
+public class PageInformation {
 
     private String next;
     private String previous;

@@ -2,12 +2,14 @@ package com.job.nfe_repeater.arquivei.domain.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NfeReceivedResponse {
 
     private Status status;
-    private Data[] data;
-    private Page page;
+    private List<NfeData> data;
+    private PageInformation pageInformation;
 
     public Status getStatus() {
         return status;
@@ -17,20 +19,20 @@ public class NfeReceivedResponse {
         this.status = status;
     }
 
-    public Data[] getData() {
+    public List<NfeData> getData() {
         return data;
     }
 
-    public void setData(Data[] data) {
+    public void setData(List<NfeData> data) {
         this.data = data;
     }
 
-    public Page getPage() {
-        return page;
+    public PageInformation getPageInformation() {
+        return pageInformation;
     }
 
-    public void setPage(Page page) {
-        this.page = page;
+    public void setPageInformation(PageInformation pageInformation) {
+        this.pageInformation = pageInformation;
     }
 
 }

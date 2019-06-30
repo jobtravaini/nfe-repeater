@@ -2,7 +2,7 @@ package com.job.nfe_repeater.arquivei.domain.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Data {
+public class NfeData {
 
     @JsonProperty("access_key")
     private String accessKey;

@@ -1,7 +1,5 @@
 # nfe-repeater
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)]
-
 The nfe-repeater is a microservice which will consume [nfe_received](https://docs.arquivei.com.br/?urls.primaryName=Arquivei%20API#/nfe/get_v1_nfe_received) api from Arquivei and store it on a relational database to reproduce its output as a proxy.
 
 ## Tech

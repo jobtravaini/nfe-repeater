@@ -57,7 +57,7 @@ mvn spring-boot:run
 The application h2-database was choosen by its prototype nature. Per default, the database will behave as an in-memory instance which will lose/delete all data when the application is stopped. This behavior can be changed by configuring the [application.properties](https://github.com/jobtravaini/nfe-repeater/blob/master/src/main/resources/application.properties) file from Spring framework. Adding the following line will change the behavior of h2-database to persist the data on disk.
 
 ```properties
-spring.datasource.url=jdbc:h2:file:/data/demo
+spring.datasource.url=jdbc:h2:file:/data/nfe-repeater
 ```
 
 ## Docker

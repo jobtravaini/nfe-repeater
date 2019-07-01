@@ -15,18 +15,20 @@ import javax.persistence.EntityExistsException;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class NfeRepositoryIntegrationTest {
+public class NfeRepositoryUnitTest {
 
     @Autowired
     private TestEntityManager entityManager;
-
     @Autowired
     private NfeRepository repository;
 
     @Test
     public void whenFindById_thenReturnNfe() {
-        Nfe nfe = insertNfeEntry("1", "<NFe xmlns=\"http://www.portalfiscal.inf.br/nfe\"></NFe>");
-        Nfe found = repository.findById("1").orElseThrow(() -> new NfeNotFoundException("1"));
+        String key = "1";
+        String xml = "<NFe xmlns=\"http://www.portalfiscal.inf.br/nfe\"></NFe>";
+
+        Nfe nfe = insertNfeEntry(key, xml);
+        Nfe found = repository.findById(key).orElseThrow(() -> new NfeNotFoundException(key));
 
         Assertions.assertThat(nfe.getXml())
                 .isEqualTo(found.getXml());
@@ -37,13 +39,16 @@ public class NfeRepositoryIntegrationTest {
         String key = "2";
         Assertions.assertThatThrownBy(() -> repository.findById(key).orElseThrow(() -> new NfeNotFoundException(key)))
                 .isInstanceOf(NfeNotFoundException.class)
-                .hasMessageContaining("2");
+                .hasMessageContaining(key);
     }
 
     @Test
     public void whenInsertingSameId_thenExceptionIsThrown() {
-        insertNfeEntry("1", "<NFe xmlns=\"http://www.portalfiscal.inf.br/nfe\"></NFe>");
-        Assertions.assertThatThrownBy(() -> insertNfeEntry("1", "<NFe xmlns=\"http://www.portalfiscal.inf.br/nfe\"></NFe>"))
+        String key = "1";
+        String xml = "<NFe xmlns=\"http://www.portalfiscal.inf.br/nfe\"></NFe>";
+
+        insertNfeEntry(key, xml);
+        Assertions.assertThatThrownBy(() -> insertNfeEntry(key, xml))
                 .isInstanceOf(EntityExistsException.class);
     }
 

@@ -53,4 +53,10 @@ public class NfeControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString(invalidKey)));
     }
 
+    @Test
+    public void whenConsumingRestToResynchronizeDatabase_thenResynchronizationIsSuccessful() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/resync"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
 }

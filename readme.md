@@ -39,13 +39,13 @@ To install this application, your must have Docker installed on your computer. I
 </plugin>
 ```
 
-To install all dependencies and generate the application runnable jar and deploy a docker image and push it to your docker run the following command:
+To install all dependencies and generate the application runnable jar and deploy a docker image and push it to your docker, run the following command:
 
 ```sh
 mvn clean install
 ```
 
-To just run the application based on the project, without installing, run the following command:
+To just run the application based on the project - without installing - run the following command:
 
 ```sh
 mvn spring-boot:run
@@ -53,7 +53,7 @@ mvn spring-boot:run
 
 ## Development Considerations
 
-The application h2-database was choosen by the prototype nature. By default, the database will be an in-memory instance which will lose/delete all data when the application is stopped. This can be changed by configuring the [application.properties](https://github.com/jobtravaini/nfe-repeater/blob/master/src/main/resources/application.properties) file from Spring framework. Adding the following line will change the behavior of h2-database to persist the data on disk.
+The application h2-database was choosen by the prototype nature. By default, the database will behave as an in-memory instance which will lose/delete all data when the application is stopped. This behavior can be changed by configuring the [application.properties](https://github.com/jobtravaini/nfe-repeater/blob/master/src/main/resources/application.properties) file from Spring framework. Adding the following line will change the behavior of h2-database to persist the data on disk.
 
 ```properties
 spring.datasource.url=jdbc:h2:file:/data/demo

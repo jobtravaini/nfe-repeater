@@ -21,7 +21,6 @@ To install this application, your must have Docker installed on your computer. I
     <groupId>com.spotify</groupId>
     <artifactId>dockerfile-maven-plugin</artifactId>
     <version>${dockerfile.version}</version>
-    <!-- Wire up to the default build phases -->
     <executions>
         <execution>
             <id>default</id>

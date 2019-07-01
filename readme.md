@@ -14,7 +14,7 @@ nfe-repeater uses the following technologies:
 
 ## Installation
 
-To install this application, your must have Maven and Docker installed on your machine. 
+To install this application, you must have Maven and Docker installed on your machine. 
 
 If you do not have Docker installed, the following plugin should be commented out of your [pom.xml](https://github.com/jobtravaini/nfe-repeater/blob/master/pom.xml) build definition:
 

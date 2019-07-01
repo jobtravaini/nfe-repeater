@@ -14,7 +14,9 @@ nfe-repeater uses the following technologies:
 
 ## Installation
 
-To install this application, your must have Docker installed on your computer. If you do not have it, the following plugin should be commented out of your [pom.xml](https://github.com/jobtravaini/nfe-repeater/blob/master/pom.xml) build process:
+To install this application, your must have Maven and Docker installed on your machine. 
+
+If you do not have Docker installed, the following plugin should be commented out of your [pom.xml](https://github.com/jobtravaini/nfe-repeater/blob/master/pom.xml) build definition:
 
 ```xml
 <plugin>
@@ -38,7 +40,7 @@ To install this application, your must have Docker installed on your computer. I
 </plugin>
 ```
 
-To install all dependencies and generate the application runnable jar and deploy a docker image and push it to your docker, run the following command:
+To install all dependencies, generate the application runnable jar and build a docker image and push it to your docker, run the following command:
 
 ```sh
 mvn clean install
@@ -52,7 +54,7 @@ mvn spring-boot:run
 
 ## Development Considerations
 
-The application h2-database was choosen by the prototype nature. By default, the database will behave as an in-memory instance which will lose/delete all data when the application is stopped. This behavior can be changed by configuring the [application.properties](https://github.com/jobtravaini/nfe-repeater/blob/master/src/main/resources/application.properties) file from Spring framework. Adding the following line will change the behavior of h2-database to persist the data on disk.
+The application h2-database was choosen by its prototype nature. Per default, the database will behave as an in-memory instance which will lose/delete all data when the application is stopped. This behavior can be changed by configuring the [application.properties](https://github.com/jobtravaini/nfe-repeater/blob/master/src/main/resources/application.properties) file from Spring framework. Adding the following line will change the behavior of h2-database to persist the data on disk.
 
 ```properties
 spring.datasource.url=jdbc:h2:file:/data/demo
@@ -60,7 +62,7 @@ spring.datasource.url=jdbc:h2:file:/data/demo
 
 ## Docker
 
-When the installation is complete, a image will be available to generate a container on your machine. To bring it up, run the command below completing the name and the image_hash with the maven build generated hash output.
+When the installation is complete, an image will be built and available to create a container on your machine. To bring it up, run the command below completing the name and the image_hash with the maven build generated hash output.
 
 ```sh
 docker run -d -p 8080:8080 <name> <image_hash>
@@ -72,7 +74,7 @@ ___
 
 ### nfe
 
-Get the details of a given nfe based on the access key provided.
+Return the details of a given nfe based on the access key provided.
 
 **URL** : `/nfe`
 

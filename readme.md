@@ -4,7 +4,7 @@
 
 The nfe-repeater is a microservice which will consume [nfe_received](https://docs.arquivei.com.br/?urls.primaryName=Arquivei%20API#/nfe/get_v1_nfe_received) api from Arquivei and store it on a relational database to reproduce its output as a proxy.
 
-### Tech
+## Tech
 
 nfe-repeater uses the following technologies:
 * [spring-boot](https://spring.io/projects/spring-boot) - Java framework to build standalone applications
@@ -12,7 +12,7 @@ nfe-repeater uses the following technologies:
 * [h2-database](https://www.h2database.com/html/main.html) - Prototype friendly database
 * [maven](https://maven.apache.org/) - Dependency manager and build tool for Java
 
-### Installation
+## Installation
 
 To install this application, your must have Docker installed on your computer. If you do not have it, the following plugin should be commented out of your pom.xml build process:
 
@@ -51,7 +51,7 @@ To just run the application based on the project, without installing, run the fo
 mvn spring-boot:run
 ```
 
-### Development Considerations
+## Development Considerations
 
 The application h2-database was choosen by the prototype nature. By default, the database will be an in-memory instance which will lose/delete all data when the application is stopped. This can be changed by configuring the application.properties file from Spring framework. Adding the following line will change the behavior of h2-database to persist the data on disk.
 
@@ -59,7 +59,7 @@ The application h2-database was choosen by the prototype nature. By default, the
 spring.datasource.url=jdbc:h2:file:/data/demo
 ```
 
-### Docker
+## Docker
 
 When the installation is complete, a image will be available to generate a container on your machine. To bring it up, run the command below completing the name and the image_hash with the maven build generated hash output.
 
@@ -67,9 +67,9 @@ When the installation is complete, a image will be available to generate a conta
 docker run -d -p 8080:8080 <name> <image_hash>
 ```
 
-### RESTful Service Documentation
+## RESTful Service Documentation
 
-#### nfe
+### nfe
 
 Get the details of a given nfe based on the access key provided.
 
@@ -98,7 +98,7 @@ For an valid access key, the output will be a raw text version of xml encoded in
 PG5mZVByb2MgdmVyc2FvPSIzLjEwIiB4bWxucz0iaHR0cDovL3d3dy5wb3J0YWxmaXNjYWwuaW5mLmJyL25mZSI+PE5GZSB4bWxucz0iaHR0cDovL3d3dy5wb3J0YWxmaXNjYWwuaW5mLmJyL25mZSI+PGluZk5GZSB2ZXJzYW89IjMuMTAiIElkPSJORmUzNTE4MDEwNDcxMDE0OTAwMDExNTU1MDAxMDAwMDA4NDAzMTAwMDA4NDAzNiI+PGlkZT48Y1VGPjM1PC9jVUY+PGNORj4wMDAwODQwMzwvY05GPjxuYXRPcD5WRU5EQSBBIENPTlNVTUlET1I8L25hdE9wPjxpbmRQYWc+MDwvaW5kUGFnPjxtb2Q+NTU8L21vZD48c2VyaWU+MTwvc2VyaWU+PG5ORj44NDAzPC9uTkY+PGRoRW1pPjIwMTgtMDEtMzBUMDA6MDA6MDAtMDI6MDA8L2RoRW1pPjxkaFNhaUVudD4y...
 ```
 
-#### resync
+### resync
 
 Resynchronizes the database with arquivei nfe_received api
 
